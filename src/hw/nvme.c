@@ -294,7 +294,7 @@ nvme_probe_ns(struct nvme_ctrl *ctrl, struct nvme_namespace *ns, u32 ns_id,
                           ns->lba_count, ns->block_size, ns->metadata_size);
 
     dprintf(3, "%s", desc);
-    boot_add_hd(&ns->drive, desc, bootprio_find_pci_device(ctrl->pci));
+    boot_add_hd(&ns->drive, desc, bootprio_find_nvme_device(ctrl->pci, ns_id));
 
 free_buffer:
     free (id);
